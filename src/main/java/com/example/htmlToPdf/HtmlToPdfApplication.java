@@ -11,6 +11,7 @@ import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.VelocityEngine;
 import org.apache.velocity.runtime.RuntimeConstants;
 import org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.http.HttpEntity;
@@ -18,6 +19,8 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.itextpdf.text.Document;
@@ -29,6 +32,7 @@ import com.itextpdf.tool.xml.XMLWorkerHelper;
 @RestController
 public class HtmlToPdfApplication {
 
+	
 	public static void main(String[] args) {
 		SpringApplication.run(HtmlToPdfApplication.class, args);
 	}
@@ -48,7 +52,7 @@ public class HtmlToPdfApplication {
 		Template t = ve.getTemplate("templates/helloworld.vm");
 		/* create a context and add data */
 		VelocityContext context = new VelocityContext();
-		context.put("name", "World");
+		context.put("name", "Madarina");
 		context.put("genDateTime", LocalDateTime.now().toString());
 		/* now render the template into a StringWriter */
 		StringWriter writer = new StringWriter();
@@ -116,4 +120,13 @@ public class HtmlToPdfApplication {
 		return "this is the message";
 	}
 
+	
+	@Autowired
+	AppService appService;
+	
+	@PostMapping("/biodata")
+	public BaseResponse printData(@RequestBody RequestDto request) {
+		return appService.printData(request);
+		
+	}
 }
