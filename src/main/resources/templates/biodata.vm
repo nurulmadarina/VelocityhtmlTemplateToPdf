@@ -1,1 +1,1 @@
-{"name": "$name","age": "$age","hobby": "$hobby","job": "$job","createdTimestamp": "$genDateTime"}
+{"name": $request.nama,"age": $request.umur,"hobby":$request.kesukaan,"job": $request.pekerjaan,"createdTimestamp": "$genDateTime","awb": $request.order.waybill, "shipper_phone": $request.order.shipper.phone}

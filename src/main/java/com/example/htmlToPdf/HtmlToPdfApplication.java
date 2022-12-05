@@ -129,4 +129,10 @@ public class HtmlToPdfApplication {
 		return appService.printData(request);
 		
 	}
+	
+	@PostMapping("/testJson")
+	public String printData(@RequestBody String requestJson) {
+		return appService.buildTemplate(requestJson);
+		
+	}
 }

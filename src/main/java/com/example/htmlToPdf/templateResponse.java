@@ -10,4 +10,6 @@ public class templateResponse {
 	private String hobby;
 	private String age;
 	private String createdTimestamp;
+	private String awb;
+	private String shipper_phone;
 }

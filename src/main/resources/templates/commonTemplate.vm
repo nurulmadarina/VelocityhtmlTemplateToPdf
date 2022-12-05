@@ -1,0 +1,5 @@
+#set($baseUrl = "localhost")
+## Velocity date format
+#macro(dateFormat $value $fromat)$date.format($fromat, $value)#end
+## Escape java addition
+#macro(escapeText $value)$esc.java($value)#end

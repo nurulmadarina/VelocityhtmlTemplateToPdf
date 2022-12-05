@@ -1,0 +1,22 @@
+
+#parse("commonTemplate.vm") ## parsing macro template
+#set($employeeId = $root.entry.employeeId)
+#set($firstName = $root.entry.firstName)
+#set($lastName = $root.entry.lastName)
+#set($address = $root.entry.address)
+#set($country = $root.entry.country)
+#set($percentage = $root.entry.percentage)
+#set($startDate = $root.entry.startDate)
+
+    {
+        "entityId": "https://$baseUrl/employee/v1.0/$employeeId"
+        "summary": {
+                "entityId": "https://$baseUrl/employee/v1.0/$employeeId"
+                "firstName": "$firstName"
+                "lastName": "$lastName"
+                "address": "#escapeText($address)"
+                "country": "$country"
+                "percentage" : $math.roundTo(2, $percentage)
+                "startDate": "#dateFormat($date, "yyyy-MM-dd")"
+        }
+    }
